@@ -8,6 +8,8 @@
 class AddressBook {
     public:
         void addContact(const Contact& contact);
+        void removeContact(const Contact& contact);
+        void removeContactFromMultimap(const std::string& type, const Contact& contact);
         std::vector<Contact> getContactsByFirstName() const;
         std::vector<Contact> getContactsByLastName() const;
     private:

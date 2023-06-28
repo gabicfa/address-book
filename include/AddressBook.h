@@ -13,9 +13,10 @@ class AddressBook {
         void removeContactFromLastNameSet(const Contact& contact);
         std::vector<Contact> getContactsByFirstName() const;
         std::vector<Contact> getContactsByLastName() const;
+        std::vector<Contact> getContactsByName(const std::string& searchName) const;
     private:
-        std::multiset<Contact, CompareContactsLastNames> m_contactsByFirstName;
-        std::multiset<Contact, CompareContactsFirstNames> m_contactsByLastName;
+        std::multiset<Contact, Contact::CompareContactsFirstNames> m_contactsByFirstName;
+        std::multiset<Contact, Contact::CompareContactsLastNames> m_contactsByLastName;
 };
 
 #endif

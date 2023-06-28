@@ -20,6 +20,8 @@ target_sources(${TargetName} PRIVATE
             ${PROJECT_SOURCE_DIR}/src/Contact.cpp
             ${PROJECT_SOURCE_DIR}/include/AddressBook.h
             ${PROJECT_SOURCE_DIR}/src/AddressBook.cpp
+            ${PROJECT_SOURCE_DIR}/include/Stringutils.h
+            ${PROJECT_SOURCE_DIR}/src/Stringutils.cpp
 )
 
 if(BUILD_TESTS)
@@ -38,6 +40,8 @@ if(BUILD_TESTS)
             tests/AddressBookTests.cpp
             ${PROJECT_SOURCE_DIR}/include/AddressBook.h
             ${PROJECT_SOURCE_DIR}/src/AddressBook.cpp
+            ${PROJECT_SOURCE_DIR}/include/Stringutils.h
+            ${PROJECT_SOURCE_DIR}/src/Stringutils.cpp
         )
         target_link_libraries(${TestName} PRIVATE GTest::gtest GTest::gtest_main)
         gtest_discover_tests(${TestName})

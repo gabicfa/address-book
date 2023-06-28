@@ -17,11 +17,10 @@ TEST(AddressBookTest, RemoveContact) {
     AddressBook ab;
     Contact c1{"John", "Doe", "1234567890"};
     Contact c2{"Alice", "Smith", "9999999999"};
-
     ab.addContact(c1);
     ab.addContact(c2);
 
-    ab.removeContact(c2);
+    ab.removeContact({"Alice", "Smith", "9999999999"});
 
     std::vector<Contact> cFirstNames = ab.getContactsByFirstName();
     ASSERT_EQ(cFirstNames.size(), 1);
@@ -43,7 +42,7 @@ TEST(AddressBookTest, RemoveContactWithSameNameButDifferentPhones)
     ab.addContact(c2);
     ab.addContact(c3);
 
-    ab.removeContact(c2);
+    ab.removeContact({"John", "Doe"});
 
     std::vector<Contact> cFirstNames = ab.getContactsByFirstName();
     ASSERT_EQ(cFirstNames.size(), 2);
@@ -66,14 +65,14 @@ TEST(AddressBookTests, RetrieveContactsSortedByFirstName) {
     std::vector<Contact> contacts = ab.getContactsByFirstName();
 
     ASSERT_EQ(contacts.size(), 4);
-    EXPECT_EQ(contacts[0].firstName, "alice");
-    EXPECT_EQ(contacts[0].lastName, "johnson");
-    EXPECT_EQ(contacts[1].firstName, "bob");
-    EXPECT_EQ(contacts[1].lastName, "arthur");
-    EXPECT_EQ(contacts[2].firstName, "jane");
-    EXPECT_EQ(contacts[2].lastName, "arthur");
-    EXPECT_EQ(contacts[3].firstName, "jane");
-    EXPECT_EQ(contacts[3].lastName, "bath");
+    ASSERT_EQ(contacts[0].firstName, "alice");
+    ASSERT_EQ(contacts[0].lastName, "johnson");
+    ASSERT_EQ(contacts[1].firstName, "bob");
+    ASSERT_EQ(contacts[1].lastName, "arthur");
+    ASSERT_EQ(contacts[2].firstName, "jane");
+    ASSERT_EQ(contacts[2].lastName, "arthur");
+    ASSERT_EQ(contacts[3].firstName, "jane");
+    ASSERT_EQ(contacts[3].lastName, "bath");
 }
 
 TEST(AddressBookTests, RetrieveContactsSortedByLastName) {
@@ -86,13 +85,33 @@ TEST(AddressBookTests, RetrieveContactsSortedByLastName) {
     std::vector<Contact> contacts = ab.getContactsByLastName();
 
     ASSERT_EQ(contacts.size(), 4);
-    EXPECT_EQ(contacts[0].lastName, "arthur");
-    EXPECT_EQ(contacts[0].firstName, "bob");
-    EXPECT_EQ(contacts[1].lastName, "arthur");
-    EXPECT_EQ(contacts[1].firstName, "jane");
-    EXPECT_EQ(contacts[2].lastName, "bath");
-    EXPECT_EQ(contacts[2].firstName, "jane");
-    EXPECT_EQ(contacts[3].lastName, "johnson");
-    EXPECT_EQ(contacts[3].firstName, "alice");
+    ASSERT_EQ(contacts[0].lastName, "arthur");
+    ASSERT_EQ(contacts[0].firstName, "bob");
+    ASSERT_EQ(contacts[1].lastName, "arthur");
+    ASSERT_EQ(contacts[1].firstName, "jane");
+    ASSERT_EQ(contacts[2].lastName, "bath");
+    ASSERT_EQ(contacts[2].firstName, "jane");
+    ASSERT_EQ(contacts[3].lastName, "johnson");
+    ASSERT_EQ(contacts[3].firstName, "alice");
 
+}
+
+TEST(AddressBookTests, RetrieveContactsByName) 
+{
+    AddressBook ab;
+    ab.addContact(Contact("Daniel", "Smith", "2345678901"));
+    ab.addContact(Contact("Dan", "Johnson", "1234567890"));
+    ab.addContact(Contact("Alice", "Johnson", "3456789012"));
+    ab.addContact(Contact("Alice", "Dantas", "3456789012"));
+
+    // Searching for "Dan" should return two contacts
+    std::vector<Contact> contacts = ab.getContactsByName("Dan");
+    ASSERT_EQ(contacts.size(), 3);
+    ASSERT_EQ(contacts[0].firstName, "alice");
+    ASSERT_EQ(contacts[0].lastName, "dantas");
+    ASSERT_EQ(contacts[1].firstName, "dan");
+    ASSERT_EQ(contacts[1].lastName, "johnson");
+    ASSERT_EQ(contacts[2].firstName, "daniel");
+    ASSERT_EQ(contacts[2].lastName, "smith");
+    
 }

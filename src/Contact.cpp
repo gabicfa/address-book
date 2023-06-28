@@ -2,6 +2,7 @@
 #include <cctype>
 #include <algorithm>
 #include "Contact.h"
+#include "StringUtils.h"
 
 Contact::Contact(const std::string &firstName, const std::string &lastName, const std::string &phoneNumber)
 {
@@ -14,11 +15,8 @@ Contact::Contact(const std::string &firstName, const std::string &lastName, cons
         throw std::invalid_argument("Phone number must only contain digits. You entered: " + phoneNumber);
     }
 
-    this->firstName = firstName;
-    std::transform(this->firstName.begin(), this->firstName.end(), this->firstName.begin(), ::tolower);
-
-    this->lastName = lastName;
-    std::transform(this->lastName.begin(), this->lastName.end(), this->lastName.begin(), ::tolower);
+    this->firstName = utils::toLowerCase(firstName);
+    this->lastName = utils::toLowerCase(lastName);
 
     this->phoneNumber = phoneNumber;
 }

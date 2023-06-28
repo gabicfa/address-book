@@ -1,11 +1,7 @@
 #include "AddressBook.h"
 #include <vector>
 #include <iostream>
-
-auto FIRST = "FIRST";
-auto LAST = "LAST";
-
-
+#include "StringUtils.h"
 
 void AddressBook::addContact(const Contact& contact) {
     m_contactsByFirstName.insert(contact);
@@ -14,10 +10,8 @@ void AddressBook::addContact(const Contact& contact) {
 
 void AddressBook::removeContact(const Contact& contact) 
 {
-    std::string lowerFirstName = contact.firstName;
-    std::string lowerLastName = contact.lastName;
-    std::transform(lowerFirstName.begin(), lowerFirstName.end(), lowerFirstName.begin(), ::tolower);
-    std::transform(lowerLastName.begin(), lowerLastName.end(), lowerLastName.begin(), ::tolower);
+    std::string lowerFirstName = utils::toLowerCase(contact.firstName);
+    std::string lowerLastName = utils::toLowerCase(contact.lastName);
     removeContactFromFirstNameSet(contact);
     removeContactFromLastNameSet(contact);
 }
@@ -67,3 +61,17 @@ std::vector<Contact> AddressBook::getContactsByLastName() const
     return contacts;
 }
 
+std::vector<Contact> AddressBook::getContactsByName(const std::string& searchName) const
+{
+    std::vector<Contact> matchingContacts;
+    std::string searchLower = utils::toLowerCase(searchName);
+
+    for(const auto& contact : m_contactsByFirstName)
+    {
+        if (contact.firstName.find(searchLower) == 0 || contact.lastName.find(searchLower) == 0) 
+        {
+            matchingContacts.push_back(contact);
+        }
+    }
+    return matchingContacts;
+}

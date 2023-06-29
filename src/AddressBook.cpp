@@ -51,21 +51,13 @@ void AddressBook::removeContactFromLastNameSet(const Contact& contact)
 
 std::vector<Contact> AddressBook::getContactsByFirstName() const
 {
-    std::vector<Contact> contacts;
-    for (const auto& contact : m_contactsByFirstName) 
-    {
-        contacts.push_back(contact);
-    }
+    std::vector<Contact> contacts(m_contactsByFirstName.begin(), m_contactsByFirstName.end());
     return contacts;
 }
 
 std::vector<Contact> AddressBook::getContactsByLastName() const 
 {
-    std::vector<Contact> contacts;
-    for (const auto& contact : m_contactsByLastName) 
-    {
-        contacts.push_back(contact);
-    }
+    std::vector<Contact> contacts(m_contactsByLastName.begin(), m_contactsByLastName.end());
     return contacts;
 }
 

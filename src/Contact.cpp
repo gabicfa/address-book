@@ -20,6 +20,11 @@ Contact::Contact(const std::string &firstName, const std::string &lastName, cons
 
     this->phoneNumber = phoneNumber;
 }
+
+Contact::~Contact() 
+{
+}
+
 bool Contact::operator==(const Contact& other) const 
 {
     return firstName == other.firstName &&

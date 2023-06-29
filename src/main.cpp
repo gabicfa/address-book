@@ -50,8 +50,8 @@ int main() {
     }
 
     // Searching for contacts by name (e.g. "John")
-    auto contactsByName = myAddressBook.getContactsByName("Jo");
-    std::cout << "\nContacts with the 'Jo':\n";
+    auto contactsByName = myAddressBook.getContactsByName("jo");
+    std::cout << "\nContacts with the 'jo':\n";
     for (const auto& contact : contactsByName) {
         std::cout << contact.firstName << " " << contact.lastName << "\n";
     }

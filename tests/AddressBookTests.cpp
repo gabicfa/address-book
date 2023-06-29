@@ -104,7 +104,6 @@ TEST(AddressBookTests, RetrieveContactsByName)
     ab.addContact(Contact("Alice", "Johnson", "3456789012"));
     ab.addContact(Contact("Alice", "Dantas", "3456789012"));
 
-    // Searching for "Dan" should return two contacts
     std::vector<Contact> contacts = ab.getContactsByName("Dan");
     ASSERT_EQ(contacts.size(), 3);
     ASSERT_EQ(contacts[0].firstName, "alice");

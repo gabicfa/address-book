@@ -3,6 +3,14 @@
 #include <iostream>
 #include "StringUtils.h"
 
+AddressBook::AddressBook() 
+{
+}
+
+AddressBook::~AddressBook() 
+{
+}
+
 void AddressBook::addContact(const Contact& contact) {
     m_contactsByFirstName.insert(contact);
     m_contactsByLastName.insert(contact);

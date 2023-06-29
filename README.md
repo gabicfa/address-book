@@ -10,7 +10,7 @@ This is a simple Address Book application built in C++. It allows for adding and
 
 ## Design Choices
 
-The Address Book is designed with simplicity and efficiency in mind. It uses the STL containers (`std::multiset`) to hold the contact information alphabetically, providing efficient storage and retrieval operations. 
+The Address Book is designed with simplicity and efficiency in mind. It uses the STL containers (`std::multiset`) to hold the contact information alphabetically, providing efficient alphabetical storage and retrieval operations. 
 
 Each `Contact` is an object that has a first name, last name, and an optional phone number. 
 
